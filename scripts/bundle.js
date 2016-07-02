@@ -1404,25 +1404,37 @@
 })(typeof window !== 'undefined' ? window : this);
 
 },{}],2:[function(require,module,exports){
-console.log('JS loaded');
-papa = require("papaparse");
-
+console.log("JS loaded");
+console.log("document", document);
+papa = require("papaparse"),
+memJson = [],
 
 window.grabCsv = function (){
     csv={};
 
-    console.log('grabCsv tirggered');
-    var file = document.getElementById('uploadButton').files[0];
+    console.log("grabCsv tirggered");
+    var file = document.getElementById("uploadButton").files[0];
     if(file){
-        console.log('name', file.name, 'file', file);
+        console.log("name", file.name, "file", file);
     }
 // Convert to JSON
-    papa.parse(file, {
+     memJson = papa.parse(file, {
         complete: function(memJson){
-            console.log('memJson', memJson);
+            console.log("memJson", memJson);
+            drawCard(memJson.data[9]);
         }
     });
-};
 
+     function drawCard(data){
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+        
+        ctx.font = "48px serif";
+        ctx.fillText(data.join(), 50, 75);
+
+    var png = canvas.toDataURL();
+    window.location.href=png;
+    }
+};
 
 },{"papaparse":1}]},{},[2]);

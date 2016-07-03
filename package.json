@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jszip": "^3.0.0",
     "papaparse": "^4.1.2"
   }
 }
